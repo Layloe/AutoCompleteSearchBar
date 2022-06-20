@@ -16,7 +16,15 @@ $(document).ready(function () {
         select: function(event, ui) {
             console.log(iu.item.id)
             fetch(`http://localhost:8000/get/${ui.item.id}`)
-                .then
+                .then(result => result.json())
+                .then(result => {
+                    $('#cast').empty()
+                    result.cat.forEach(cast =>
+                        {
+                            $(cast).append(`<li>${cast}</li>`)
+                        })
+                        $('img').attr('src', result.poster)
+                })
 
         }
     })
